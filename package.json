@@ -1,0 +1,20 @@
+{
+  "name": "aoc2021",
+  "version": "1.0.0",
+  "description": "Advent of Code 2021",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "Advent",
+    "of",
+    "Code",
+    "puzzle"
+  ],
+  "author": "Jakub Szczepaniak <szczepaniak.jkb@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^27.4.3"
+  }
+}

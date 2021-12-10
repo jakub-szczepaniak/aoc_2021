@@ -15,6 +15,7 @@
   "author": "Jakub Szczepaniak <szczepaniak.jkb@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "jest": "^27.4.3"
+    "jest": "^27.4.3",
+    "jest-each": "^27.4.2"
   }
 }

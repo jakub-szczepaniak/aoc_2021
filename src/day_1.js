@@ -10,14 +10,14 @@ class SubmarineSonar {
 class SonarAnalyzer {
     analyze(report) {
         if (report.length < 1) { throw SonarFailure;}
-        return this.no_previous_readings();
+        if (report.length == 1) { return this.no_previous_readings();}
+        return 0;
     }
     
     no_previous_readings(){
         return "N/A - no previous measurement"
     }
 }
-
 
 module.exports = {
     SonarAnalyzer: SonarAnalyzer,

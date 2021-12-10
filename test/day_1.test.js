@@ -16,6 +16,11 @@ describe("Sonar analyzer", function(){
         subject = new day_1.SonarAnalyzer();
         expect(subject.analyze(report)).toBe(0);
     });
+    test("two different statements -> 1 increase", function(){
+        report = make_report(["123", "124"]);
+        subject = new day_1.SonarAnalyzer();
+        expect(subject.analyze(report)).toBe(1);
+    });
 });
 
 function make_report(readings) {

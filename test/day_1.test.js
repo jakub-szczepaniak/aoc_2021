@@ -13,6 +13,12 @@ describe("Sonar analyzer", function(){
         subject = new day_1.SonarAnalyzer();
         expect(subject.analyze(report)).toBe("N/A - no previous measurement");
     });
-
-    
 });
+
+function make_report(readings) {
+    return day_1.SubmarineSonar.build_report(readings);
+}
+
+function make_empty_report() {
+    return day_1.SubmarineSonar.build_report([]);
+}

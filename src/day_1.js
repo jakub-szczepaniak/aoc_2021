@@ -12,12 +12,15 @@ class SonarAnalyzer {
         if (report.length < 1) { throw SonarFailure;}
         if (report.length == 1) { return this.no_previous_readings();}
         if (report.length > 1) {
-            if(report[0] < report[1]) {
-                return 1;
-            }
-        return 0;
+            return this.count_increases(report[0], report[1]);
         }
-        
+    }
+    count_increases(reading_1, reading_2) {
+        if (reading_1 < reading_2){
+            return 1;
+        } else {
+            return 0;
+        }
     }
     
     no_previous_readings(){

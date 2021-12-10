@@ -4,7 +4,8 @@
   "description": "Advent of Code 2021",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watchAll"
   },
   "keywords": [
     "Advent",

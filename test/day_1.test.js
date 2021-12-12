@@ -58,10 +58,10 @@ function make_report(readings) {
 }
 
 function make_simple_report_analyzer() {
-    return new day_1.SimpleSonarAnalyzer(new day_1.SimpleValidator);
+    return new day_1.SimpleSonarAnalyzer();
 }
 function make_complex_report_analyzer() {
-    return new day_1.ComplexSonarAnalyzer(new day_1.ComplexValidator);
+    return new day_1.ComplexSonarAnalyzer();
 }
 
 function make_empty_report() {

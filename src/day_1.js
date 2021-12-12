@@ -58,23 +58,9 @@ class SimpleSonarAnalyzer extends SonarAnalyzer {
     }
     analyze(report) {
         if (this.validator.isValid(report.length)) {
-            return this.do_analyze(report)    
+            return this.count_simple_increases(report)    
         } else {
             return this.not_available(SimpleSonarAnalyzer.message);
-        }
-    }
-    do_analyze(report) {
-        var increases = 0;
-        for(var i=1; i<=report.length; i++) {
-            increases = increases + this.count_increases(report[i-1], report[i]);
-        }
-        return increases;
-    }
-    count_increases(reading_1, reading_2) {
-        if (reading_1 < reading_2){
-            return 1;
-        } else {
-            return 0;
         }
     }
 }

@@ -11,17 +11,29 @@ class SubmarineSonar {
     }
 }
 
+class SonarReportValidator {
+    isValid(report_length) {
+        if (report_length < 1) { throw SonarFailure;}
+        if (report_length == 1) { return false}
+        return true;
+    }
+}
+
 class SonarAnalyzer {
     analyze(report) {
-        if (report.length < 1) { throw SonarFailure;}
-        if (report.length == 1) { return this.no_previous_readings();}
-        if (report.length > 1) {
-            var increases = 0;
-            for(var i=1; i<=report.length; i++) {
-                increases = increases + this.count_increases(report[i-1], report[i]);
-            }
-            return increases;
+        let validator = new SonarReportValidator;
+        if (validator.isValid(report.length)) {
+            return this.simple_analyze(report)    
+        } else {
+            return this.no_previous_readings();
         }
+    }
+    simple_analyze(report) {
+        var increases = 0;
+        for(var i=1; i<=report.length; i++) {
+            increases = increases + this.count_increases(report[i-1], report[i]);
+        }
+        return increases;
     }
     count_increases(reading_1, reading_2) {
         if (reading_1 < reading_2){

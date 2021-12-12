@@ -48,7 +48,18 @@ class SonarAnalyzer {
     }
 }
 
+class ComplexSonarAnalyzer extends SonarAnalyzer {
+    analyze(report) {
+        if (report.length < 3) { return this.no_previous_sum();}
+
+    }
+    no_previous_sum() {
+        return "N/A - no previous sum";
+    }
+}
+
 module.exports = {
     SonarAnalyzer: SonarAnalyzer,
+    ComplexSonarAnalyzer: ComplexSonarAnalyzer,
     SubmarineSonar: SubmarineSonar
 }

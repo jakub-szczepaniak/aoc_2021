@@ -43,7 +43,14 @@ describe("Sonar analyzer", function(){
         subject = new day_1.SonarAnalyzer();
         expect(subject.analyze(report)).toBe(1215);
     })
+});
 
+describe("Sonar analyzer with complex analisys",function() {
+    test("when input is less than 3 elements, no previous sum", function(){
+        report = make_report(["1", "2"]);
+        subject = new day_1.ComplexSonarAnalyzer();
+        expect(subject.analyze(report)).toBe("N/A - no previous sum");
+    });
 });
 
 function make_report(readings) {

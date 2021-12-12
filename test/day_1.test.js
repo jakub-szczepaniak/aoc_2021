@@ -46,11 +46,23 @@ describe("Sonar analyzer", function(){
 });
 
 describe("Sonar analyzer with complex analisys",function() {
-    test("when input is less than 3 elements, no previous sum", function(){
-        report = make_report(["1", "2"]);
+    test("when input is less than 4 elements, no previous sum", function(){
+        report = make_report(["1", "2", "3"]);
         subject = make_complex_report_analyzer();
         expect(subject.analyze(report)).toBe("N/A - no previous sum");
     });
+
+    test("input with 2 sums = increase =1 ", function(){
+        report = make_report(["199", "200", "208", "210"]);
+        subject = make_complex_report_analyzer();
+        expect(subject.analyze(report)).toBe(1);
+    });
+    test("for real input", function(){
+        report = make_report_from_file(__dirname + '/day_1.input');
+        subject = make_complex_report_analyzer();
+        expect(subject.analyze(report)).toBe(1150);
+    });
+    
 });
 
 function make_report(readings) {

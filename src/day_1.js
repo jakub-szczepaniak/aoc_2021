@@ -20,7 +20,7 @@ class SimpleValidator {
 }
 class ComplexValidator {
     isValid(report_length) {
-        if (report_length < 3) {return false}
+        if (report_length < 4) {return false}
         return true;
     }
 }
@@ -34,6 +34,20 @@ class SonarAnalyzer {
     }
     not_available(message) {
         return `N/A - ${message}`
+    }
+    count_simple_increases(report) {
+        var increases = 0;
+        for(var i=1; i<=report.length; i++) {
+            increases = increases + this.count_increases(report[i-1], report[i]);
+        }
+        return increases;
+    }
+    count_increases(reading_1, reading_2) {
+        if (reading_1 < reading_2){
+            return 1;
+        } else {
+            return 0;
+        }
     }
 }
 
@@ -75,8 +89,17 @@ class ComplexSonarAnalyzer extends SonarAnalyzer {
         return this.do_analyze(report);
     }
     do_analyze(report) {
-        return 9;
+        let sums = this.prepare_sums(report);
+        return this.count_simple_increases(sums);
     }
+    prepare_sums(report) {
+        let sums = [];
+        for(let i=0;i<= report.length-3;i++) {
+            sums[i] = report[i] + report[i+1] + report[i+2];
+        }
+        return sums;
+    }
+
 }
 
 module.exports = {

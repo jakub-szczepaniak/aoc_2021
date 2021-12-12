@@ -20,6 +20,7 @@ class SonarReportValidator {
 }
 
 class SonarAnalyzer {
+    static message = "";
     analyze(report) {
         let validator = new SonarReportValidator;
         if (validator.isValid(report.length)) {
@@ -42,24 +43,40 @@ class SonarAnalyzer {
             return 0;
         }
     }
-    
-    no_previous_readings(){
-        return "N/A - no previous measurement"
+    not_available(message) {
+        return `N/A - ${message}`
+    }
+}
+
+class SimpleSonarAnalyzer extends SonarAnalyzer {
+    static message = "no previous measurement";
+    analyze(report) {
+        let validator = new SonarReportValidator;
+        if (validator.isValid(report.length)) {
+            return this.simple_analyze(report)    
+        } else {
+            return this.not_available(SimpleSonarAnalyzer.message);
+        }
+    }
+    simple_analyze(report) {
+        var increases = 0;
+        for(var i=1; i<=report.length; i++) {
+            increases = increases + this.count_increases(report[i-1], report[i]);
+        }
+        return increases;
     }
 }
 
 class ComplexSonarAnalyzer extends SonarAnalyzer {
+    static message = "no previous sum";
     analyze(report) {
-        if (report.length < 3) { return this.no_previous_sum();}
+        if (report.length < 3) { return this.not_available(ComplexSonarAnalyzer.message);}
 
-    }
-    no_previous_sum() {
-        return "N/A - no previous sum";
     }
 }
 
 module.exports = {
-    SonarAnalyzer: SonarAnalyzer,
+    SimpleSonarAnalyzer: SimpleSonarAnalyzer,
     ComplexSonarAnalyzer: ComplexSonarAnalyzer,
     SubmarineSonar: SubmarineSonar
 }

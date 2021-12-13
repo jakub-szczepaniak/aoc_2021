@@ -1,15 +1,23 @@
 const day_2 = require('../src/day_2.js');
 
 describe("Submarine course plotter", function(){
-  test("we add command forward 1 then the horizontal position is 1", function(){
+  test("we add command 'forward 1' then the horizontal position is 1", function(){
    let course_plot = make_plotter();
    course_plot.move("forward 1");
    expect(course_plot.horizontal).toBe(1);
   });
-  test("we add command down 1 then vertical position is 1", function(){
+  test("we add command 'down 1' then vertical position is 1", function(){
     let course_plot = make_plotter();
     course_plot.move("down 1");
     expect(course_plot.vertical).toBe(1);
+  })
+
+  test("we add command 'down 1' then 'up 1'  thern the vertical position is 0", function(){
+    let course_plot = make_plotter();
+    course_plot.move("down 1");
+    expect(course_plot.vertical).toBe(1);
+    course_plot.move("up 1");
+    expect(course_plot.vertical).toBe(0);
   })
 
 });

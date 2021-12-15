@@ -39,14 +39,14 @@ function make_plotter() {
 }
 
 function move_forward(value) {
-  return new day_2.Command("forward", value);
+  return day_2.Command.create("forward", value);
 }
 
 function move_down(value) {
-  return new day_2.Command("down", value);
+  return day_2.Command.create("down", value);
 }
 
 function move_up(value) {
-  return new day_2.Command("up", value);
+  return day_2.Command.create("up", value);
 }
 

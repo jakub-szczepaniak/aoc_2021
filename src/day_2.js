@@ -3,7 +3,7 @@ class CoursePlotter{
     this.horizontal = 0;
     this.vertical = 0;
   }
-  move(movement=""){
+  move(movement){
     switch (movement.direction) {
       case 'forward':
         this.horizontal = this.horizontal + movement.value;
@@ -21,6 +21,32 @@ class Command{
   constructor(direction, value) {
     this.direction = direction;
     this.value = value;
+  }
+  static create(direction, value) {
+    switch (direction) {
+      case "forward":
+        return new ForwardCommand(value);
+      case "down" :
+        return new DownCommand(value);
+      case "up" :
+        return new UpCommand(value)
+    }
+  }
+}
+
+class ForwardCommand extends Command {
+  constructor(value) {
+    super("forward", value);
+  }
+}
+class DownCommand extends Command {
+  constructor(value) {
+    super("down", value);
+  }
+}
+class UpCommand extends Command {
+  constructor(value) {
+    super("up", value);
   }
 }
 

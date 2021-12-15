@@ -9,13 +9,15 @@ describe("Submarine course plotter", function(){
   });
   test("we add command 'down 1' then vertical position is 1", function(){
     let course_plot = make_plotter();
-    course_plot.move("down 1");
+    let command = move_down(1);
+    course_plot.move("down 1", command);
     expect(course_plot.vertical).toBe(1);
   });
 
   test("we add command 'down 1' then 'up 1'  thern the vertical position is 0", function(){
     let course_plot = make_plotter();
-    course_plot.move("down 1");
+    let command = move_down(1);
+    course_plot.move("down 1", command);
     expect(course_plot.vertical).toBe(1);
     course_plot.move("up 1");
     expect(course_plot.vertical).toBe(0);
@@ -37,5 +39,9 @@ function make_plotter() {
 
 function move_forward(value) {
   return new day_2.Command("forward", value);
+}
+
+function move_down(value) {
+  return new day_2.Command("down", value);
 }
 

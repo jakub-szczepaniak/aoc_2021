@@ -8,11 +8,10 @@ class CoursePlotter{
       case 'forward':
         this.horizontal = this.horizontal + movement.value;
         break;
+      case 'down':
+        this.vertical = this.vertical + movement.value;
       }
     switch (command) {
-      case 'down 1': 
-        this.vertical = this.vertical + 1;
-        break;
       case 'up 1':
         this.vertical = this.vertical - 1;
         break;

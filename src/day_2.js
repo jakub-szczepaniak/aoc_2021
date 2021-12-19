@@ -15,6 +15,11 @@ class CoursePlotter{
         this.vertical = this.vertical - movement.value;
     }
   }
+  move_many(steps) {
+    steps.forEach(step => {
+      this.move(step)  
+    });
+  }
 }
 
 class Command{

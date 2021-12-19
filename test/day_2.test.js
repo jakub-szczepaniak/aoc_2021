@@ -32,6 +32,13 @@ describe("Submarine course plotter", function(){
     expect(course_plot.horizontal).toBe(2);
   });
 
+  test("We can pass many commands as a list", function(){
+    let course_plot = make_plotter();
+    let commands = [move_forward(1), move_forward(2)];
+    course_plot.move_many(commands);
+    expect(course_plot.horizontal).toBe(3);
+  })
+
 });
 
 function make_plotter() {

@@ -1,3 +1,17 @@
+const fs = require('fs');
+class CourseParser{
+  static build_course(steps) {
+    return steps.map((step) => {
+      let [direction, length] = step.split(" ");
+      return Command.create(direction, Number(length));
+    })
+  }
+  static load_from_file(filepath) {
+        const data = fs.readFileSync(filepath, 'utf8')
+        return this.build_course(data.split("\r\n"));
+  }
+}
+
 class CoursePlotter{
   constructor(){
     this.horizontal = 0;
@@ -57,5 +71,6 @@ class UpCommand extends Command {
 
 module.exports = {
   CoursePlotter: CoursePlotter,
-  Command: Command
+  Command: Command,
+  CourseParser: CourseParser
 }

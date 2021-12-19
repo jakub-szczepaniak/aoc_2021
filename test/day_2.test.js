@@ -37,6 +37,12 @@ describe("Submarine course plotter", function(){
     course_plot.move_many(course)
     expect(course_plot.horizontal).toBe(6);
   })
+  test("Test for the input file", function(){
+    let course_plot = make_plotter();
+    let course = day_2.CourseParser.load_from_file(__dirname + '/day_2.input')
+    course_plot.move_many(course);
+    expect(course_plot.multiplier()).toBe(12);
+  })
 
 
 });

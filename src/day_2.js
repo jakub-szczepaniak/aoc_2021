@@ -17,28 +17,22 @@ class Position{
     this.horizontal = horizontal;
     this.vertical = vertical;
   }
+  multiplier(){
+    return this.horizontal*this.vertical;
+  }
 }
 
 class CoursePlotter{
   constructor(){
     this.position = new Position(0, 0);
-    this.horizontal = 0;
-    this.vertical = 0;
   }
+
   move(movement){
-    switch (movement.direction) {
-      case 'forward':
-        this.horizontal = this.horizontal + movement.value;
-        break;
-      case 'down':
-        this.vertical = this.vertical + movement.value;
-        break;
-      case 'up':
-        this.vertical = this.vertical - movement.value;
-    }
+    this.position = movement.update(this.position);
   }
+
   multiplier() {
-    return this.horizontal * this.vertical;
+    return this.position.multiplier();
   }
   move_many(steps) {
     steps.forEach(step => {
@@ -68,15 +62,24 @@ class ForwardCommand extends Command {
   constructor(value) {
     super("forward", value);
   }
+  update(position) {
+    return new Position(position.horizontal + this.value, position.vertical);
+  }
 }
 class DownCommand extends Command {
   constructor(value) {
     super("down", value);
   }
+  update(position) {
+    return new Position(position.horizontal, position.vertical + this.value);
+  }
 }
 class UpCommand extends Command {
   constructor(value) {
     super("up", value);
+  }
+  update(position) {
+    return new Position(position.horizontal, position.vertical - this.value);
   }
 }
 

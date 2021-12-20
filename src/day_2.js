@@ -12,8 +12,16 @@ class CourseParser{
   }
 }
 
+class Position{
+  constructor(horizontal=0, vertical=0){
+    this.horizontal = horizontal;
+    this.vertical = vertical;
+  }
+}
+
 class CoursePlotter{
   constructor(){
+    this.position = new Position(0, 0);
     this.horizontal = 0;
     this.vertical = 0;
   }

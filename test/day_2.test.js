@@ -1,4 +1,5 @@
 const day_2 = require('../src/day_2.js');
+const {tags} = require('jest-tags');
 
 describe("Submarine course plotter", function(){
   test("we add command 'forward 1' then the horizontal position is 1", function(){
@@ -37,11 +38,11 @@ describe("Submarine course plotter", function(){
     course_plot.move_many(course)
     expect(course_plot.horizontal).toBe(6);
   })
-  test("Test for the input file", function(){
+  tags("integration").test("Test for the input file", function(){
     let course_plot = make_plotter();
     let course = day_2.CourseParser.load_from_file(__dirname + '/day_2.input')
     course_plot.move_many(course);
-    expect(course_plot.multiplier()).toBe(12);
+    expect(course_plot.multiplier()).toBe(1604850);
   })
 
 

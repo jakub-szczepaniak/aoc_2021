@@ -1,4 +1,5 @@
 const day_1 = require('../src/day_1.js');
+const { tags } = require('jest-tags');
 
 describe("Sonar analyzer", function(){
     test("for empty report, throw an error", function(){
@@ -38,7 +39,7 @@ describe("Sonar analyzer", function(){
         subject = make_simple_report_analyzer();
         expect(subject.analyze(report)).toBe(0);
     });
-    test("for real input", function(){
+    tags("integration").test("for real input", function(){
         report = make_report_from_file(__dirname + '/day_1.input');
         subject = make_simple_report_analyzer();
         expect(subject.analyze(report)).toBe(1215);
@@ -57,7 +58,7 @@ describe("Sonar analyzer with complex analisys",function() {
         subject = make_complex_report_analyzer();
         expect(subject.analyze(report)).toBe(1);
     });
-    test("for real input", function(){
+    tags("integration").test("for real input", function(){
         report = make_report_from_file(__dirname + '/day_1.input');
         subject = make_complex_report_analyzer();
         expect(subject.analyze(report)).toBe(1150);

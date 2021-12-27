@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "test:watch": "jest --watchAll --tags '!integration'"
+    "test:watch": "jest --watchAll",
+    "test:fast": "jest --tags '!integration'"
   },
   "keywords": [
     "Advent",

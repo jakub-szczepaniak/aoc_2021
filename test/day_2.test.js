@@ -39,12 +39,34 @@ describe("Submarine course plotter", function(){
     course_plot.move_many(course);
     expect(course_plot.multiplier()).toBe(1604850);
   })
-
-
 });
+describe("Advanced course plotter", function(){
+  test("calculates for sample short input", function() {
+    let course_plot = make_advanced_plotter();
+    course_plot.move_many([adv_move_forward(5), adv_move_down(5), adv_move_forward(8)]);
+    expect(course_plot.multiplier()).toBe(520);
+  });
+  test("runs for real input", function(){
+    let course_plot = make_advanced_plotter();
+    let course = day_2.CourseParser.load_advanced_from_file(__dirname + '/day_2.input');
+    course_plot.move_many(course);
+    expect(course_plot.multiplier()).toBe(12)
+  });
+});
+
+function make_advanced_plotter(){
+  return new day_2.AdvancedCoursePlotter();
+}
 
 function make_plotter() {
   return new day_2.CoursePlotter();
+}
+
+function adv_move_forward(value){
+  return day_2.Command.advanced_create("forward", value);
+}
+function adv_move_down(value) {
+  return day_2.Command.advanced_create("down", value);
 }
 
 function move_forward(value) {

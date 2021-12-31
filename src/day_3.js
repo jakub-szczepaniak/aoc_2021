@@ -8,6 +8,9 @@ class DiagnosticReport {
     gamma_rate(){
         return parseInt(this.source, 2);
     }
+    static parse(input) {
+        return [input.split("").map((digit) => {return Number(digit)})];
+    }
 }
 
 module.exports = {

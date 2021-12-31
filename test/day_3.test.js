@@ -12,5 +12,11 @@ describe("Submarine diagnostic report", function(){
             expect(sub.gamma_rate()).toBe(4);
         });
     });
-    
+    describe("diagnostic report parser", function(){
+        let input = single_reading();
+        expect(day_3.DiagnosticReport.parse(input)).toStrictEqual([[1,0]]);
+    });
 })
+function single_reading() {
+    return "10";
+}

@@ -23,15 +23,28 @@ describe("Submarine diagnostic report", function(){
             expect(result).toStrictEqual(
                 [
                     [1, 0],
-                    [0, 1]
+                    [0, 1],
+                    [1, 1]
                 ]
             )
         });
+        test("can transpose parsed input", function(){
+            let input = many_readings();
+            let parsed = day_3.DiagnosticReport.parse(input);
+            let result = day_3.DiagnosticReport.transpose(parsed);
+
+            expect(result).toStrictEqual(
+                [
+                    [1, 0, 1],
+                    [0, 1, 1],
+                ]
+            )
+        })
     });
 });
 function single_reading() {
     return "10";
 }
 function many_readings() {
-    return `10\r\n01`
+    return `10\r\n01\r\n11`
 }

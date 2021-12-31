@@ -13,10 +13,25 @@ describe("Submarine diagnostic report", function(){
         });
     });
     describe("diagnostic report parser", function(){
-        let input = single_reading();
-        expect(day_3.DiagnosticReport.parse(input)).toStrictEqual([[1,0]]);
+        test("works for single reading", function() {
+            let input = single_reading();
+            expect(day_3.DiagnosticReport.parse(input)).toStrictEqual([[1,0]]);
+        });
+        test("works for many readings",function(){
+            let input = many_readings();
+            result = day_3.DiagnosticReport.parse(input);
+            expect(result).toStrictEqual(
+                [
+                    [1, 0],
+                    [0, 1]
+                ]
+            )
+        });
     });
-})
+});
 function single_reading() {
     return "10";
+}
+function many_readings() {
+    return `10\r\n01`
 }

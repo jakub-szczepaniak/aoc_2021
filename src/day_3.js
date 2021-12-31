@@ -9,7 +9,13 @@ class DiagnosticReport {
         return parseInt(this.source, 2);
     }
     static parse(input) {
-        return [input.split("").map((digit) => {return Number(digit)})];
+        let readings = input.split("\r\n");
+        let result = []
+        readings.forEach(reading => {
+            let parsed = reading.split("").map((digit) => {return Number(digit)});
+            result.push(parsed)
+        });
+        return result;
     }
 }
 
